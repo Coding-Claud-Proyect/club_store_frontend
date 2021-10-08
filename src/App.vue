@@ -1,56 +1,63 @@
 <template>
-  <v-card class="overflow-hidden">
-    <v-app-bar
-      absolute
-      dark
-      shrink-on-scroll
-      prominent
-      fade-img-on-scroll
-      scroll-target="#scrolling-techniques-4"
-    >
-      <v-col cols="12">
-        <v-card>
-          <v-img
-            src="./assets/Club_Store.jpg"
-            max-height="125"
-            contain
-            class="grey lighten-3"
-          ></v-img>
-        </v-card>
-      </v-col>
-      <template v-slot:extension>
-        <v-tabs align-with-title>
-          <v-tab>Home</v-tab>
-          <v-tab>Oferta del Día</v-tab>
-          <v-tab>Articulos</v-tab>
-          <v-tab>¿Quienes Somos?</v-tab>
-          <v-tab>Contactenos</v-tab>
-        </v-tabs>
-      </template>
-    </v-app-bar>
-    <!-- <v-main>
-      <HelloWorld />
-    </v-main> -->
-    <v-sheet
-      id="scrolling-techniques-4"
-      class="overflow-y-auto"
-      max-height="600"
-    >
-      <v-container style="height: 100%"></v-container>
-    </v-sheet>
-  </v-card>
+  <v-app>
+    <div id="app">
+      <v-container class="justify-center">
+        <v-row>
+          <v-col cols="12">
+            <v-card color="#ECEFF1">
+              <v-img
+                src="./assets/Club_Store.jpg"
+                max-height="125"
+                contain
+              ></v-img>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-app-bar color="#37474F" dense>
+          <v-btn color="#90A4AE" elevation="2" @click="home()">HOME</v-btn>
+          <v-btn color="#90A4AE" elevation="2" @click="ofertas()"
+            >OFERTAS</v-btn
+          >
+          <v-btn color="#90A4AE" elevation="2" @click="qSomos()"
+            >¿QUIENES SOMOS?</v-btn
+          >
+          <v-btn color="#90A4AE" elevation="2" @click="contactenos()"
+            >CONTACTENOS</v-btn
+          >
+        </v-app-bar>
+      </v-container>
+      <v-container>
+        <router-view />
+      </v-container>
+    </div>
+  </v-app>
 </template>
 
-<script>
-import HelloWorld from "./components/HelloWorld";
-
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  background-color: #cfd8dc;
+}
+</style>
+<script lang="ts">
 export default {
-  name: "App",
-
-  components: {
-    HelloWorld,
+  methods: {
+    home() {
+      this.$router.push("/");
+    },
+    ofertas() {
+      this.$router.push("/ofertas");
+    },
+    qSomos() {
+      this.$router.push("/quienes_somos");
+    },
+    contactenos() {
+      this.$router.push("/contactenos");
+    },
   },
-
-  data: () => ({}),
 };
 </script>
