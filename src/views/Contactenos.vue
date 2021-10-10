@@ -23,7 +23,7 @@
               :rules="{
                 required: true,
                 digits: 10,
-                regex: '^/[0-9]/$',
+                regex: '^[0-9]',
               }"
             >
               <v-text-field
@@ -51,7 +51,7 @@
               name="comentarios"
               :rules="{
                 required: true,
-                regex: '^[a-zA-z0-9]$',
+                regex: '^[a-zA-z0-9]',
               }"
             >
               <v-textarea
