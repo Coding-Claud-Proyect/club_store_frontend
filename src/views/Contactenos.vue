@@ -65,7 +65,7 @@
             </validation-provider>
 
             <v-btn class="mr-4" type="submit" :disabled="invalid">
-              submit
+              Enviar
             </v-btn>
             <v-btn @click="clear"> clear </v-btn>
           </form>
@@ -88,27 +88,27 @@ setInteractionMode("eager");
 
 extend("digits", {
   ...digits,
-  message: "{_field_} needs to be {length} digits. ({_value_})",
+  message: "{_field_} necesita tener {length} números. ({_value_})",
 });
 
 extend("required", {
   ...required,
-  message: "{_field_} can not be empty",
+  message: "{_field_} no puede ser vacío",
 });
 
 extend("max", {
   ...max,
-  message: "{_field_} may not be greater than {length} characters",
+  message: "{_field_} no puede ser mayor a {length} caracteres",
 });
 
 extend("regex", {
   ...regex,
-  message: "{_field_} {_value_} does not match {regex}",
+  message: "{_field_} {_value_} no cumple con la expresión {regex}",
 });
 
 extend("email", {
   ...email,
-  message: "Email must be valid",
+  message: "Email es invalido",
 });
 
 export default {
@@ -117,25 +117,35 @@ export default {
     ValidationObserver,
   },
   data: () => ({
-    name: "",
-    phoneNumber: "",
-    email: "",
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: null,
+    sName: "",
+    nCelular: "",
+    sEmail: "",
+    sComent: "",
   }),
 
   methods: {
     submit() {
-      this.$refs.observer.validate();
+      let objInsert = {
+        nombres: this.sName,
+        celular: this.nCelular,
+        email: this.sEmail,
+        comentarios: this.sComent,
+      };
+      this.axios
+        .post("/guardarContactenos", objInsert)
+        .then((res) => {
+          alert("Registro guardado exitosamente");
+          this.clear();
+        })
+        .catch((err) => {
+          console.error(err.response);
+        });
     },
     clear() {
-      this.name = "";
-      this.phoneNumber = "";
-      this.email = "";
-      this.select = null;
-      this.checkbox = null;
-      this.$refs.observer.reset();
+      this.sName = "";
+      this.nCelular = "";
+      this.sEmail = "";
+      this.sComent = null;
     },
   },
 };

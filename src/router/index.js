@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Ofertas from '../views/Ofertas.vue'
 import QuienesSomos from '../views/QuienesSomos.vue'
 import Contactenos from '../views/Contactenos.vue'
 
@@ -12,11 +11,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/ofertas',
-    name: 'Ofertas',
-    component: Ofertas
   },
   {
     path: '/quienes_somos',
